@@ -1,3 +1,7 @@
+__author__ = "Deepanshu Lulla <deepanshu.lulla@gmail.com>"
+__date__ = "$Feb 17, 2017 11:55:29 AM$"
+
+
 # Enter your code here. Read input from STDIN. Print output to STDOUT
 #Question->https://www.hackerrank.com/challenges/coin-change
 
@@ -72,12 +76,13 @@ def countSolutionsFaster(amount,numDeno):
     #the last element or the top corner element will be out answer i.e table[amount][numDeno-1]
     #print table
     return table[amount][numDeno-1]
-        
-inp=GetInput()
-inp.scan()
-denoArray=inp.denoArray
-amount=inp.amount
-numDeno=inp.numDeno
 
-sol=countSolutionsFaster(amount,numDeno)
-print sol
+if __name__ == "__main__":        
+    inp=GetInput()
+    inp.scan()
+    denoArray=inp.denoArray
+    amount=inp.amount
+    numDeno=inp.numDeno
+
+    sol=countSolutionsFaster(amount,numDeno)
+    print sol
