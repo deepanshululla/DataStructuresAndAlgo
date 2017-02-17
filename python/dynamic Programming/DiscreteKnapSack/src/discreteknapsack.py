@@ -1,4 +1,7 @@
-# Enter your code here. Read input from STDIN. Print output to STDOUT
+#https://www.hackerrank.com/contests/bits-goa-day-3/challenges/knapsack-problem
+#implementation of 10 knapsack or discrete knapsack
+__author__ = "Deepanshu Lulla <deepanshu.lulla@gmail.com>"
+__date__ = "$Feb 17, 2017 10:59:41 AM$"
 class StoreInput:
     def __init__(self):
         [s,n]=raw_input().split()
@@ -31,41 +34,9 @@ class ItemList:
             it=Item(i,weightArr[i],valueArr[i])
             self.itemList[i]=it
            
-def size(arr):
-    numRows=len(arr)
-    numCol=len(arr[0])
-    return [numRows,numCol]
 
-def mergeSortBasedOnQuality(itemList):
-    length=len(itemList)
-    if length>1:	
-            mid=length//2
-            leftHalf=itemList[:mid]
-            rightHalf=itemList[mid:]
-            mergeSortBasedOnQuality(leftHalf)
-            mergeSortBasedOnQuality(rightHalf)
-            l1=len(leftHalf)
-            l2=len(rightHalf)		
-            i=0
-            j=0
-            k=0
-            while i<l1 and j<l2:
-                    if leftHalf[i].quality<rightHalf[j].quality:
-                            itemList[k]=leftHalf[i]
-                            i=i+1
-                    else:
-                            itemList[k]=rightHalf[j]
-                            j=j+1
-                    k=k+1
-            while i<l1:
-                    itemList[k]=leftHalf[i]
-                    i=i+1
-                    k=k+1
 
-            while j<l2:
-                    itemList[k]=rightHalf[j]
-                    j=j+1
-                    k=k+1
+
 
 def discreteKnapsack(itemList,maxweight,numItems):
     #this can not be solved by greedy
@@ -74,11 +45,10 @@ def discreteKnapsack(itemList,maxweight,numItems):
     #There are only two conditions whether we choose an item or we don't
     #hence maximum value can be achieved by finding max(when element was chosen,when it wasn't)
     #bottom up
-    mergeSortBasedOnQuality(itemList)
-    itemList.reverse()
+    #mergeSortBasedOnQuality(itemList)
+    #itemList.reverse()
     
     table=[[0 for x in range(maxweight+1)] for x in range(numItems+1)]
-    #[a,b]=size(table)
     for i in range(0,numItems+1):
         for w in range(0,maxweight+1):
             if i>0 and w>0:
