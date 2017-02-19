@@ -1,3 +1,6 @@
+#convert integer to string. Alternatively Could be done by str() method in python. This is an attempt to implement str method in python.
+#testcases -1234,0134,-0134,
+
 def stringFromInt(num):
 	isNeg=False
 	temp=''

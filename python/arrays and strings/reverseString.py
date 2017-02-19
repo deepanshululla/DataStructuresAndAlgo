@@ -1,3 +1,4 @@
+#"there is a string" should output "string a is there"
 str1="there is a string"
 str11=str1
 str2=''

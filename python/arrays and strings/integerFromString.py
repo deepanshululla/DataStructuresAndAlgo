@@ -1,3 +1,5 @@
+#convert integer to string. Alternatively Could be done by int() method in python. This is an attempt to implement int method in python.
+#testcases '-1234','0134','-0134'
 def intFromString(string):
 	isNeg=False
 	if string[0]=='-':
