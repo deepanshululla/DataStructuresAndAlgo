@@ -1,4 +1,4 @@
-class BinHeap:
+class MaxHeap:
 	def __init__(self,heapType):
 		self.heapList=[0]
 		self.heapType=heapType
