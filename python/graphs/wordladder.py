@@ -22,7 +22,7 @@ def buildGraph(wordFile):
             for word2 in d[bucket]:
                 if word1!=word2:
                     g.addEdge(word1,word2)
-    print(d)
+    #print(d)
     return g
 
 class BuildGraphTest(unittest.TestCase):

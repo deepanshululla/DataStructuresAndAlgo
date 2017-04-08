@@ -85,6 +85,7 @@ class Graph:
         '''
         self.vertList = {}
         self.numVertices = 0
+        self.edgeList={}
 
     def addVertex(self, key):
         self.numVertices += 1
@@ -101,21 +102,32 @@ class Graph:
     def __contains__(self, item):
         return item in self.vertList
 
+    def getAllEdges(self):
+        return list(self.edgeList.keys())
+
     def addEdge(self, f, t, cost=0):
         '''
         adds edge from f to t
-        :param f: Vertex f
-        :param t: Vertex t
+        :param f: Vertex or Key f
+        :param t: Vertex or key t
         :param cost: weight of edge
         :return: None
         '''
-
+        nv1=None
+        nv2=None
         if f not in self.vertList:
-            nv = self.addVertex(f)
+            nv1 = self.addVertex(f)
         if t not in self.vertList:
-            nv = self.addVertex(t)
+            nv2 = self.addVertex(t)
         self.vertList[f].addNeighbor(self.vertList[t], cost)
-
+        if nv1 and nv2:
+            self.edgeList[(nv1,nv2)]=cost
+        elif nv1 and not nv2:
+            self.edgeList[(nv1,t)]=cost
+        elif not nv1 and nv2:
+            self.edgeList[(f,nv2)]=cost
+        elif not nv1 and not nv2:
+            self.edgeList[(f,t)]=cost
     def getVertices(self):
         '''
 
@@ -126,7 +138,9 @@ class Graph:
     def __iter__(self):
         '''
         makes it easy to iterate over all vertices in a graph
-        :return:
+        :return:generator object
+        use: for vertex in graph:
+            vertex.colo
         '''
         return iter(self.vertList.values())
 
