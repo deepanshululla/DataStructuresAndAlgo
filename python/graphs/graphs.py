@@ -94,6 +94,11 @@ class Graph:
         return newVertex
 
     def getVertex(self, n):
+        """
+        query Vertex Node object using key
+        :param n: key
+        :return:
+        """
         if n in self.vertList:
             return self.vertList[n]
         else:
@@ -120,14 +125,8 @@ class Graph:
         if t not in self.vertList:
             nv2 = self.addVertex(t)
         self.vertList[f].addNeighbor(self.vertList[t], cost)
-        if nv1 and nv2:
-            self.edgeList[(nv1,nv2)]=cost
-        elif nv1 and not nv2:
-            self.edgeList[(nv1,t)]=cost
-        elif not nv1 and nv2:
-            self.edgeList[(f,nv2)]=cost
-        elif not nv1 and not nv2:
-            self.edgeList[(f,t)]=cost
+        self.edgeList[(f,t)]=cost
+
     def getVertices(self):
         '''
 
