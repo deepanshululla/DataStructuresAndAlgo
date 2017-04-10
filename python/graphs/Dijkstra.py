@@ -1,7 +1,8 @@
 import unittest
 from random import randint
 from pythonds.graphs import PriorityQueue
-from graphs import Graph, Vertex
+from pythonds.graphs import Graph, Vertex;
+
 
 
 def build_graph_with_word_file(word_file):
@@ -45,36 +46,36 @@ def build_graph():
     g.addEdge('b', 'd', 1)
     return g
 
-
-def dijkstra(aGraph, start):
-    """
-    uses vertex.dist to realize distance between nodes.
-    The dist instance variable will contain the current total weight of the smallest
-    weight path from the start to the vertex in question.
-    Time Complexity: O((V+E)logV)
-    :param aGraph: Graph Object
-    :param start: vertex Object
-    :return:aGraph: Graph Object
-    """
-    if not isinstance(start, Vertex):
-        raise Exception("Value Error: second parameter must be a vertex node")
-    pq = PriorityQueue()
-    start.setDistance(0)  # we set the distance of source from itself as 0
-    pq.buildHeap([(v.getDistance(), v) for v in aGraph])
-    # we are building a priority queue of tuple of vertices and their distances from source
-    # Initially all distances are set to infinity
-    while not pq.isEmpty():
-        currentVert = pq.delMin()  # extracts minimum and reconstructs the heap
-        for nextVert in currentVert.getConnections():
-            newDist = currentVert.getDistance() \
-                      + currentVert.getWeight(nextVert)
-            if newDist < nextVert.getDistance():
-                # Checking if d[v]<d[u]+w[u,v]
-                nextVert.setDistance(newDist)
-                nextVert.setPred(currentVert)
-                pq.decreaseKey(nextVert, newDist)
-                # decrease key value and reconstructs the heap
-    return aGraph
+class Dijkstra:
+    def shortest_path(self,aGraph, start):
+        """
+        uses vertex.dist to realize distance between nodes.
+        The dist instance variable will contain the current total weight of the smallest
+        weight path from the start to the vertex in question.
+        Time Complexity: O((V+E)logV)
+        :param aGraph: Graph Object
+        :param start: vertex Object
+        :return:aGraph: Graph Object
+        """
+        if not isinstance(start, Vertex):
+            raise Exception("Value Error: second parameter must be a vertex node")
+        pq = PriorityQueue()
+        start.setDistance(0)  # we set the distance of source from itself as 0
+        pq.buildHeap([(v.getDistance(), v) for v in aGraph])
+        # we are building a priority queue of tuple of vertices and their distances from source
+        # Initially all distances are set to infinity
+        while not pq.isEmpty():
+            currentVert = pq.delMin()  # extracts minimum and reconstructs the heap
+            for nextVert in currentVert.getConnections():
+                newDist = currentVert.getDistance() \
+                          + currentVert.getWeight(nextVert)
+                if newDist < nextVert.getDistance():
+                    # Checking if d[v]<d[u]+w[u,v]
+                    nextVert.setDistance(newDist)
+                    nextVert.setPred(currentVert)
+                    pq.decreaseKey(nextVert, newDist)
+                    # decrease key value and reconstructs the heap
+        return aGraph
 
 
 class DijkstraTest(unittest.TestCase):
@@ -90,7 +91,8 @@ class DijkstraTest(unittest.TestCase):
     def test_dijkstra(self):
         print("Running Dijkstra")
         start = self.tGraph.getVertex('a')
-        self.tGraph = dijkstra(self.tGraph, start)
+        sp=Dijkstra()
+        self.tGraph = sp.shortest_path(self.tGraph, start)
 
         for v in self.tGraph:
             print("The distance from a to %s is %d" % (v.getId(), v.getDistance()))

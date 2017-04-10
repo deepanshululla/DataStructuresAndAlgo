@@ -79,6 +79,7 @@ class Vertex:
 class Graph:
     def __init__(self):
         '''
+        This is implementation of directed graph using adjacency lists
         Member Variables
         vertList: contains a dictionary that maps vertex names to vertex objects
         numVertices: integer>0 contains no. of vertices in the graph
@@ -105,6 +106,13 @@ class Graph:
             return None
 
     def __contains__(self, item):
+        """
+        Overloading in operator
+        use
+        >>>if vertexKey in graph:
+        :param item: vertex Key
+        :return: True if exists else False
+        """
         return item in self.vertList
 
     def getAllEdges(self):
@@ -113,8 +121,8 @@ class Graph:
     def addEdge(self, f, t, cost=0):
         '''
         adds edge from f to t
-        :param f: Vertex or Key f
-        :param t: Vertex or key t
+        :param f: Key f
+        :param t: key t
         :param cost: weight of edge
         :return: None
         '''
@@ -136,7 +144,7 @@ class Graph:
 
     def __iter__(self):
         '''
-        makes it easy to iterate over all vertices in a graph
+        makes it easy to iterate over all vertex objects in a graph
         :return:generator object
         use: for vertex in graph:
             vertex.colo
